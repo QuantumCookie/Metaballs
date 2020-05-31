@@ -12,6 +12,7 @@ public class MetaballController : MonoBehaviour
     [Range(5, 200)] public int resolution = 8;
     private Vertex[] grid;
 
+    public float Size => size;
     public int Resolution => resolution;
     public Vertex[] Grid => grid;
 

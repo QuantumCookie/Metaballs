@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6805bc4b-0154-4d28-86bb-fa51c1157cca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Metaballs/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Metaballs/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Metaballs/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Metaballs/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Metaballs/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Metaballs/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Metaballs/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Metaballs/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Metaballs/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/CellMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/CellMaterial.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Materials/CellShader.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/CellShader.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MetaballController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MetaballController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MetaballMesh.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MetaballMesh.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,30 +20,33 @@
     <session id="-72110903">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cs" value="10" />
-          <entry key="shader" value="2" />
+          <entry key="cs" value="116" />
+          <entry key="shader" value="643" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="C#" value="10" />
-          <entry key="ShaderLab" value="2" />
+          <entry key="C#" value="116" />
+          <entry key="ShaderLab" value="643" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="shader" value="1" />
+          <entry key="cs" value="1" />
+          <entry key="shader" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="ShaderLab" value="1" />
+          <entry key="C#" value="1" />
+          <entry key="ShaderLab" value="3" />
         </counts>
       </usages-collector>
     </session>
@@ -55,8 +56,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/MetaballController.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+            <state relative-caret-position="192">
+              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+              <folding>
+                <marker date="1590949538085" expanded="false" signature="6:78" ph="..." />
+                <marker date="1590949538085" expanded="true" signature="207:4672" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="815:849" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="880:1649" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="1206:1619" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="1270:1609" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="1687:2218" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="1790:2212" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="2277:2329" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="2374:2788" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="2455:2761" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="2815:2875" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="2906:2940" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="2974:3181" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="3027:3175" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="3225:3830" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="3275:3381" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="3427:3526" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="3572:3678" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="3725:3824" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="3862:4010" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="3914:4004" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="4046:4340" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="4376:4670" ph="{...}" />
+                <marker date="1590949538085" expanded="true" signature="4693:4793" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -64,14 +92,39 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Materials/CellShader.shader">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="545">
-              <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+            <state relative-caret-position="592">
+              <caret line="43" column="65" selection-start-line="43" selection-start-column="65" selection-end-line="43" selection-end-column="65" />
               <folding>
-                <marker date="1590947751204" expanded="true" signature="26:1278" ph="{...}" />
-                <marker date="1590947751204" expanded="true" signature="47:150" ph="{...}" />
-                <marker date="1590947751204" expanded="true" signature="169:1276" ph="{...}" />
-                <marker date="1590947751204" expanded="true" signature="248:1270" ph="{...}" />
-                <marker date="1590947751204" expanded="true" signature="271:1255" ph="{...}" />
+                <marker date="1590950290963" expanded="true" signature="26:1669" ph="{...}" />
+                <marker date="1590950290963" expanded="true" signature="47:207" ph="{...}" />
+                <marker date="1590950290963" expanded="true" signature="226:1667" ph="{...}" />
+                <marker date="1590950290963" expanded="true" signature="305:1661" ph="{...}" />
+                <marker date="1590950290963" expanded="true" signature="328:1646" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/MetaballMesh.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="241">
+              <caret line="170" column="54" selection-start-line="170" selection-start-column="54" selection-end-line="170" selection-end-column="54" />
+              <folding>
+                <marker date="1590949584656" expanded="false" signature="6:78" ph="..." />
+                <marker date="1590949584656" expanded="true" signature="168:6063" ph="{...}" />
+                <marker date="1590949584656" expanded="true" signature="531:926" ph="{...}" />
+                <marker date="1590949584656" expanded="true" signature="954:994" ph="{...}" />
+                <marker date="1590949584656" expanded="true" signature="1026:1483" ph="{...}" />
+                <marker date="1590949584656" expanded="true" signature="1519:4887" ph="{...}" />
+                <marker date="1590949584656" expanded="true" signature="1616:4881" ph="{...}" />
+                <marker date="1590949584656" expanded="true" signature="1669:4871" ph="{...}" />
+                <marker date="1590949584656" expanded="true" signature="2265:4857" ph="{...}" />
+                <marker date="1590949584656" expanded="true" signature="4961:5386" ph="{...}" />
+                <marker date="1590949584656" expanded="true" signature="5467:5553" ph="{...}" />
+                <marker date="1590949584656" expanded="true" signature="5649:5772" ph="{...}" />
+                <marker date="1590949584656" expanded="true" signature="5809:5918" ph="{...}" />
+                <marker date="1590949584656" expanded="true" signature="5955:6061" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -84,12 +137,17 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Materials/CellShader.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Materials/Distortion.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MetaballMesh.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Materials/noise-simplex.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MetaballController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/Assets/Materials/Distortion.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MetaballController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MetaballMesh.cs" />
         <option value="$PROJECT_DIR$/Assets/Materials/CellShader.shader" />
       </list>
     </option>
@@ -201,23 +259,103 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Assets/Materials/noise-simplex.shader">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+          <folding>
+            <marker date="1590948224388" expanded="true" signature="0:151" ph="/* Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld' ... */" />
+            <marker date="1590948224388" expanded="true" signature="176:887" ph="{...}" />
+            <marker date="1590948224388" expanded="true" signature="189:253" ph="{...}" />
+            <marker date="1590948224388" expanded="true" signature="265:884" ph="{...}" />
+            <marker date="1590948224388" expanded="true" signature="273:882" ph="{...}" />
+            <marker date="1590948224388" expanded="true" signature="286:874" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/MetaballController.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+        <state relative-caret-position="192">
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+          <folding>
+            <marker date="1590949538085" expanded="false" signature="6:78" ph="..." />
+            <marker date="1590949538085" expanded="true" signature="207:4672" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="815:849" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="880:1649" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="1206:1619" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="1270:1609" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="1687:2218" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="1790:2212" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="2277:2329" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="2374:2788" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="2455:2761" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="2815:2875" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="2906:2940" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="2974:3181" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="3027:3175" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="3225:3830" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="3275:3381" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="3427:3526" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="3572:3678" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="3725:3824" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="3862:4010" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="3914:4004" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="4046:4340" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="4376:4670" ph="{...}" />
+            <marker date="1590949538085" expanded="true" signature="4693:4793" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Materials/Distortion.shader">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1984">
+          <caret line="136" column="1" selection-start-line="136" selection-start-column="1" selection-end-line="136" selection-end-column="1" />
+          <folding>
+            <marker date="1590948674828" expanded="true" signature="20:3654" ph="{...}" />
+            <marker date="1590948674828" expanded="true" signature="35:282" ph="{...}" />
+            <marker date="1590948674828" expanded="true" signature="296:3652" ph="{...}" />
+            <marker date="1590948674828" expanded="true" signature="349:372" ph="{...}" />
+            <marker date="1590948674828" expanded="true" signature="385:3649" ph="{...}" />
+            <marker date="1590948674828" expanded="true" signature="416:3640" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/MetaballMesh.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="170" column="54" selection-start-line="170" selection-start-column="54" selection-end-line="170" selection-end-column="54" />
+          <folding>
+            <marker date="1590949584656" expanded="false" signature="6:78" ph="..." />
+            <marker date="1590949584656" expanded="true" signature="168:6063" ph="{...}" />
+            <marker date="1590949584656" expanded="true" signature="531:926" ph="{...}" />
+            <marker date="1590949584656" expanded="true" signature="954:994" ph="{...}" />
+            <marker date="1590949584656" expanded="true" signature="1026:1483" ph="{...}" />
+            <marker date="1590949584656" expanded="true" signature="1519:4887" ph="{...}" />
+            <marker date="1590949584656" expanded="true" signature="1616:4881" ph="{...}" />
+            <marker date="1590949584656" expanded="true" signature="1669:4871" ph="{...}" />
+            <marker date="1590949584656" expanded="true" signature="2265:4857" ph="{...}" />
+            <marker date="1590949584656" expanded="true" signature="4961:5386" ph="{...}" />
+            <marker date="1590949584656" expanded="true" signature="5467:5553" ph="{...}" />
+            <marker date="1590949584656" expanded="true" signature="5649:5772" ph="{...}" />
+            <marker date="1590949584656" expanded="true" signature="5809:5918" ph="{...}" />
+            <marker date="1590949584656" expanded="true" signature="5955:6061" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Materials/CellShader.shader">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+        <state relative-caret-position="592">
+          <caret line="43" column="65" selection-start-line="43" selection-start-column="65" selection-end-line="43" selection-end-column="65" />
           <folding>
-            <marker date="1590947751204" expanded="true" signature="26:1278" ph="{...}" />
-            <marker date="1590947751204" expanded="true" signature="47:150" ph="{...}" />
-            <marker date="1590947751204" expanded="true" signature="169:1276" ph="{...}" />
-            <marker date="1590947751204" expanded="true" signature="248:1270" ph="{...}" />
-            <marker date="1590947751204" expanded="true" signature="271:1255" ph="{...}" />
+            <marker date="1590950290963" expanded="true" signature="26:1669" ph="{...}" />
+            <marker date="1590950290963" expanded="true" signature="47:207" ph="{...}" />
+            <marker date="1590950290963" expanded="true" signature="226:1667" ph="{...}" />
+            <marker date="1590950290963" expanded="true" signature="305:1661" ph="{...}" />
+            <marker date="1590950290963" expanded="true" signature="328:1646" ph="{...}" />
           </folding>
         </state>
       </provider>

@@ -3,7 +3,8 @@
     Properties
     {
         [HDR]_Color ("Tint", Color) = (1, 1, 1, 1)
-        _NoiseTex ("Noise", 2D) = "white" {}
+        _NoiseStrength ("Noise Strength", Float) = 0.5
+        _NoiseTex ("Noise 1", 2D) = "white" {}
     }
     SubShader
     {
@@ -17,6 +18,7 @@
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+            #include "noiseSimplex.cginc"
 
             struct appdata
             {
@@ -32,13 +34,19 @@
             };
 
             float4 _Color;
+            float _NoiseStrength;
             sampler2D _NoiseTex;
 
             v2f vert (appdata v)
             {
                 v2f o;
-                float noise = tex2Dlod(_NoiseTex, float4(v.uv, 0, 0));
-                //v.vertex.xy += noise * 100;
+                
+                float noise = tex2Dlod(_NoiseTex, float4(v.uv * 3 + _SinTime.x, 0, 0));
+                noise = noise * 0.5 + 0.5;
+                if(noise < 0.8) noise = 0;
+                
+                v.vertex.x += snoise(v.vertex.xyz) * _NoiseStrength * noise;
+                v.vertex.y += snoise(v.vertex.xyz) * _NoiseStrength * noise;
                 o.vertex = UnityObjectToClipPos(v.vertex);
 
                 o.uv = v.uv;
@@ -46,10 +54,11 @@
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            float4 frag (v2f i) : SV_Target
             {
                 return _Color;
             }
+            
             ENDCG
         }
     }

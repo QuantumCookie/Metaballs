@@ -8,6 +8,7 @@ public class MetaballMesh : MonoBehaviour
     private Material material;
 
     private List<Vector3> vertices;
+    private List<Vector2> uv;
     private List<int> triangles;
     
     private Mesh mesh;
@@ -26,6 +27,7 @@ public class MetaballMesh : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
 
         vertices = new List<Vector3>();
+        uv = new List<Vector2>();
         triangles = new List<int>();
 
         mesh = meshFilter.sharedMesh ?? new Mesh();
@@ -46,6 +48,7 @@ public class MetaballMesh : MonoBehaviour
         gridResolution = controller.Resolution;
 
         vertices.Clear();
+        uv.Clear();
         triangles.Clear();
         mesh.Clear();
         
@@ -53,6 +56,7 @@ public class MetaballMesh : MonoBehaviour
 
         mesh.SetVertices(vertices);
         mesh.SetTriangles(triangles, 0);
+        mesh.SetUVs(0, uv);
 
         meshFilter.sharedMesh = mesh;
         meshRenderer.sharedMaterial = material;
@@ -163,6 +167,10 @@ public class MetaballMesh : MonoBehaviour
         vertices.Add(b);
         vertices.Add(c);
 
+        uv.Add(new Vector2(a.x / controller.Size, a.y / controller.Size));
+        uv.Add(new Vector2(b.x / controller.Size, b.y / controller.Size));
+        uv.Add(new Vector2(c.x / controller.Size, c.y / controller.Size));
+        
         triangles.Add(t);
         triangles.Add(t + 1);
         triangles.Add(t + 2);
