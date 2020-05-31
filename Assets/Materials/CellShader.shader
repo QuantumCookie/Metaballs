@@ -38,7 +38,7 @@
             {
                 v2f o;
                 float noise = tex2Dlod(_NoiseTex, float4(v.uv, 0, 0));
-                v.vertex.xy += noise * 100;
+                //v.vertex.xy += noise * 100;
                 o.vertex = UnityObjectToClipPos(v.vertex);
 
                 o.uv = v.uv;

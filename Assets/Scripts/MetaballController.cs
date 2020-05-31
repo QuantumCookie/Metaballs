@@ -34,7 +34,7 @@ public class MetaballController : MonoBehaviour
     private void Initialize()
     {
         cellSize = size / resolution;
-
+        
         Camera.main.transform.position = new Vector3(size * 0.5f, size * 0.5f, -10);
         Camera.main.orthographicSize = size * 0.5f;
 
