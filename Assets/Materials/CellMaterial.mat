@@ -72,7 +72,7 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseStrength: 0.54
+    - _NoiseStrength: 0.5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Power: 2.06

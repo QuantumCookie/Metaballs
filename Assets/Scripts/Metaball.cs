@@ -8,4 +8,5 @@ public class Metaball
     public Vector3 position;
     public float radius;
     public Vector3 velocity;
+    public Color color;
 }

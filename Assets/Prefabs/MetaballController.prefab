@@ -95,10 +95,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 150
   resolution: 100
-  metaballCount: 5
+  metaballCount: 9
   maxVelocity: 10
-  minSize: 5
-  maxSize: 15
+  minSize: 4.3
+  maxSize: 7.2
+  boundsFraction: 0.447
   material: {fileID: 2100000, guid: 825d40f218fd3154a957e40b93f12ed6, type: 2}
 --- !u!114 &5571218785244928906
 MonoBehaviour:

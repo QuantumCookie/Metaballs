@@ -286,21 +286,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MetaballController
       objectReference: {fileID: 0}
-    - target: {fileID: 5571218785244928910, guid: c219a595fab22244496bc5fb71c9f5db,
-        type: 3}
-      propertyPath: metaballCount
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 5571218785244928910, guid: c219a595fab22244496bc5fb71c9f5db,
-        type: 3}
-      propertyPath: maxSize
-      value: 8.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5571218785244928910, guid: c219a595fab22244496bc5fb71c9f5db,
-        type: 3}
-      propertyPath: minSize
-      value: 3.6
-      objectReference: {fileID: 0}
     - target: {fileID: 5571218785244928911, guid: c219a595fab22244496bc5fb71c9f5db,
         type: 3}
       propertyPath: m_LocalPosition.x
