@@ -16,6 +16,12 @@
           <e p="Metaball.cs" t="Include" />
           <e p="MetaballController.cs" t="Include" />
           <e p="MetaballMesh.cs" t="Include" />
+          <e p="Terrain3D" t="Include">
+            <e p="marchingCubesLUT.txt" t="Include" />
+            <e p="TerrainController.cs" t="Include" />
+            <e p="Triangulation.cs" t="Include" />
+            <e p="triangulationLUT.txt" t="Include" />
+          </e>
         </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />
