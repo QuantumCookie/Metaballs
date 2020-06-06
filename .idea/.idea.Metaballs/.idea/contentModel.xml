@@ -19,6 +19,7 @@
           <e p="Terrain3D" t="Include">
             <e p="marchingCubesLUT.txt" t="Include" />
             <e p="TerrainController.cs" t="Include" />
+            <e p="TerrainMesh.cs" t="Include" />
             <e p="Triangulation.cs" t="Include" />
             <e p="triangulationLUT.txt" t="Include" />
           </e>
