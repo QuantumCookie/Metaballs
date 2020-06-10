@@ -6,8 +6,6 @@ namespace Terrain3D
 {
     public class Triangulation
     {
-        private static Vector3 origin = Vector3.zero;
-    
         private static int[] triangle = new int[256 * 5 * 3]
         {
             -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
@@ -268,67 +266,21 @@ namespace Terrain3D
             -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1
         };
 
-        public static List<Vector3> Edges(int mask, float lerpFactor = 0.5f)
+        public static List<int> Edges(int mask)
         {
-            List<Vector3> edges = new List<Vector3>();
-
+            List<int> edges = new List<int>();
+            
             int start = mask * 15;
+            
             for (int i = 0; i < 15; i++)
             {
                 int e = triangle[start + i];
                 if (e == -1) break;
-                
-                edges.Add(Convert(e));
+
+                edges.Add(e);
             }
 
             return edges;
-        }
-        
-        private static Vector3 Convert(int edge, float lerpFactor = 0.5f)
-        {
-            Vector3 e = Vector3.zero;
-    
-            switch (edge)
-            {
-                case 0:
-                    e = Vector3.up * lerpFactor;
-                    break;
-                case 1:
-                    e = Vector3.up + Vector3.right * lerpFactor;
-                    break;
-                case 2:
-                    e = Vector3.up * lerpFactor + Vector3.right;
-                    break;
-                case 3:
-                    e = Vector3.right * lerpFactor;
-                    break;
-                case 4:
-                    e = Vector3.up * lerpFactor + Vector3.forward;
-                    break;
-                case 5:
-                    e = Vector3.up + Vector3.right * lerpFactor + Vector3.forward;
-                    break;
-                case 6:
-                    e = Vector3.up * lerpFactor + Vector3.right + Vector3.forward;
-                    break;
-                case 7:
-                    e = Vector3.right * lerpFactor + Vector3.forward;
-                    break;
-                case 8:
-                    e = Vector3.forward * lerpFactor;
-                    break;
-                case 9:
-                    e = Vector3.up + Vector3.forward * lerpFactor;
-                    break;
-                case 10:
-                    e = Vector3.up + Vector3.right + Vector3.forward * lerpFactor;
-                    break;
-                case 11:
-                    e = Vector3.right + Vector3.forward * lerpFactor;
-                    break;
-            }
-    
-            return e;
         }
     }
 }

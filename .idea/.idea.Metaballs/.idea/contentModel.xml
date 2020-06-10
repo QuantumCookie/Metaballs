@@ -18,6 +18,9 @@
           <e p="MetaballMesh.cs" t="Include" />
           <e p="Terrain3D" t="Include">
             <e p="marchingCubesLUT.txt" t="Include" />
+            <e p="Perlin.cs" t="Include" />
+            <e p="Perlin3DTest.cs" t="Include" />
+            <e p="PerlinNoise.cs" t="Include" />
             <e p="TerrainController.cs" t="Include" />
             <e p="TerrainMesh.cs" t="Include" />
             <e p="Triangulation.cs" t="Include" />
