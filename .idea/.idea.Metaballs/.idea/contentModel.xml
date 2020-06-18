@@ -9,8 +9,10 @@
         <e p="Materials" t="Include">
           <e p="CellShader.shader" t="Include" />
           <e p="Distortion.shader" t="Include" />
+          <e p="MetaballShader.shader" t="Include" />
           <e p="noise-simplex.shader" t="Include" />
           <e p="noiseSimplex.cginc" t="Include" />
+          <e p="Voronoise.cginc" t="Include" />
         </e>
         <e p="Scripts" t="Include">
           <e p="Metaball.cs" t="Include" />

@@ -15,15 +15,16 @@ namespace Terrain3D
         public bool showDebug = true;
         [Space]
         public bool showMasterBounds = true;
-        public bool showCells = true;
-        public bool showVertices = true;
+        private bool showCells = false;
+        private bool showVertices = false;
+        private bool showValues = false;
         [Range(0.01f, 0.5f)]public float vertexSize = 0.05f;
     
         [Header("Terrain Settings")] 
-        [Range(1, 40)]
+        [Range(1, 42)]
         public int gridResolution = 8;
         public float size = 10f;
-        [Range(-4, 4)] public float threshold = 2;
+        public float threshold = 8;
     
         [Header("Renderer Settings")]
         public Material material;
@@ -33,25 +34,35 @@ namespace Terrain3D
         private int vertexResolution;
         private int gridCount, vertexCount;
 
+        [Header("Metaball Settings")]
+        [Range(1, 15)] public int metaballCount = 5;
+        [Header("Size")]
+        [Range(1, 5)] public float minSize = 2;
+        [Range(2, 7)] public float maxSize = 2;
+        [Header("Speed")]
+        [Range(0.5f, 10f)] public float minSpeed = 0.5f;
+        [Range(0.5f, 10f)] public float maxSpeed = 3f;
+        [Range(0, 1)] public float relativeCollisionBounds = 0.9f;
+        public List<Color> palette;
+        
         private Vertex[] vertices;
 
         private TerrainMesh terrainMesh;
 
         private Function f;
         
-        private void Awake()
+        private void OnEnable()
         {
             gameObject.AddComponent<MeshFilter>();
             MeshRenderer renderer = gameObject.AddComponent<MeshRenderer>();
             renderer.sharedMaterial = material;
             terrainMesh = gameObject.AddComponent<TerrainMesh>();
-            RefreshMesh();
+            
+            InitializeMesh();
         }
 
-        private void RefreshMesh()
+        private void InitializeMesh()
         {
-            if(terrainMesh == null) return;
-            
             center = Vector3.zero;
 
             startPosition = center - Vector3.one * size * 0.5f;
@@ -62,8 +73,8 @@ namespace Terrain3D
             vertexCount = vertexResolution * vertexResolution * vertexResolution;
             
             vertices = new Vertex[vertexCount];
-            
-            f = new Function(center, size, 5);
+
+            if(f == null) f = new Function(center, metaballCount, Vector3.one * size * relativeCollisionBounds, new Vector2(minSize, maxSize), new Vector2(minSpeed, maxSpeed), palette);
 
             for (int i = 0; i < vertexCount; i++)
             {
@@ -73,21 +84,50 @@ namespace Terrain3D
                 v.i = (i / (vertexResolution * vertexResolution)) % vertexResolution;
                 v.position = startPosition + new Vector3(v.i * cellSize, v.j * cellSize, v.k * cellSize);
                 v.value = f.Evaluate(v.position);
-                v.state = v.value < threshold;
+                v.state = v.value > threshold;
                 
                 vertices[i] = v;
             }
+            
+            if(terrainMesh != null)
+            {
+                terrainMesh.GenerateMesh(vertices, vertexResolution, cellSize, f, threshold);
+                UpdateShaderParams();    
+            }
+        }
+
+        private void UpdateShaderParams()
+        {
+            Vector4[] m = new Vector4[metaballCount];
+            Vector4[] colors = new Vector4[metaballCount];
+
+            for (int i = 0; i < metaballCount; i++)
+            {
+                Vector3 objPos = transform.TransformPoint(f.metaballs[i].center);
+                m[i] = new Vector4(objPos.x, objPos.y, objPos.z, f.metaballs[i].radius);
+                colors[i] = new Vector4(f.metaballs[i].color.r, f.metaballs[i].color.g, f.metaballs[i].color.b, 1);
+            }
+        
+            Shader.SetGlobalInt("_MetaballCount", metaballCount);
+            Shader.SetGlobalVectorArray("_Metaballs", m);
+            Shader.SetGlobalVectorArray("_Colors", colors);
+        }
+
+        private void InitializeFunction()
+        {
+            f = new Function(center, metaballCount, Vector3.one * size * relativeCollisionBounds, new Vector2(minSize, maxSize), new Vector2(minSpeed, maxSpeed), palette);
         }
         
         private void OnDrawGizmos()
         {
-            f.OnDrawGizmos();
-            if (!showDebug) return;
+            if (!showDebug || !Application.isPlaying) return;
     
             if (showMasterBounds)
             {
                 Gizmos.color = Color.white;
                 Gizmos.DrawWireCube(transform.TransformPoint(center), Vector3.one * size);
+                Gizmos.color = Color.green;
+                Gizmos.DrawWireCube(transform.TransformPoint(center), Vector3.one * size * relativeCollisionBounds);
             }
     
             if (showCells)
@@ -115,30 +155,28 @@ namespace Terrain3D
                     else Gizmos.color = Color.white;
                     
                     Gizmos.DrawSphere(transform.TransformPoint(vertices[i].position), vertexSize);
-                    //Handles.Label(transform.TransformPoint(vertices[i].position), vertices[i].value.ToString());
+                    Handles.Label(transform.TransformPoint(vertices[i].position), vertices[i].value.ToString());
+                }
+            }
+
+            if (showValues)
+            {
+                for (int i = 0; i < vertexCount; i++)
+                {
+                    Handles.Label(transform.TransformPoint(vertices[i].position), vertices[i].value.ToString());
                 }
             }
         }
 
         private void Update()
         {
-            //f.UpdateMetaballs();
-            
-            for (int i = 0; i < vertexCount; i++)
-            {
-                vertices[i].value = f.Evaluate(vertices[i].position);
-                vertices[i].state = vertices[i].value > 1f;
-            }
-            
-            terrainMesh.GenerateMesh(vertices, vertexResolution, cellSize, f, threshold);
+            f.MoveMetaballs();
+            InitializeMesh();
         }
 
         private void OnValidate()
         {
-            if(Application.isPlaying)
-            {
-                RefreshMesh();
-            }
+            InitializeFunction();
         }
 
         private float InverseLerp(float a, float b, float val)
@@ -156,153 +194,145 @@ namespace Terrain3D
         public float value;
     }
 
-    /*public class Function
+    public class Metaball3D
     {
-        private Vector3 center;
-
-        public Function(Vector3 _center)
-        {
-            center = _center;
-        }
-
-        public float Evaluate(Vector3 point)
-        {
-            //return Perlin.Noise(100 * point);
-            //return 4 * Mathf.Sin(10 * (point.y - center.y) * Mathf.PI * 0.5f);
-            return (center - point).magnitude;
-        }
-
-        public Vector3 Normal(Vector3 point)
-        {
-            //return Vector3.up;//Mathf.Cos(point.z - center.z);
-            return (point - center).normalized;
-        }
-    }*/
+        public Vector3 center;
+        public float radius;
+        public Vector3 velocity;
+        public Color color;
+    }
     
+    [System.Serializable]
     public class Function
     {
         private Vector3 center;
-        private Metaball[] metaballs;
-        private float size;
+        public Metaball3D[] metaballs;
+        private Vector3 bounds;
 
-        public Function(Vector3 _center, float _size, int metaballCount)
+        public Function(Vector3 _center, int nMetaballs, Vector3 _bounds, Vector2 sizeRange, Vector2 speedRange, List<Color> palette)
         {
             center = _center;
-            size = _size;
+            bounds = _bounds;
+
+            metaballs = new Metaball3D[nMetaballs];
             
-            metaballs = new Metaball[metaballCount];
-
-            for (int i = 0; i < metaballCount; i++)
+            for (int i = 0; i < nMetaballs; i++)
             {
-                metaballs[i] = new Metaball(Vector3.zero, Random.Range(1f, 5f), Random.insideUnitSphere * 1f);
+                Metaball3D m = new Metaball3D();
+                m.radius = Random.Range(sizeRange.x, sizeRange.y);
+                m.center = new Vector3(
+                    Random.Range(-bounds.x * 0.5f + m.radius, bounds.x * 0.5f - m.radius),
+                    Random.Range(-bounds.y * 0.5f + m.radius, bounds.y * 0.5f - m.radius),
+                    Random.Range(-bounds.z * 0.5f + m.radius, bounds.z * 0.5f - m.radius)
+                    );
+                m.velocity = Random.insideUnitSphere * Random.Range(speedRange.x, speedRange.y);
+                m.color = palette[Random.Range(0, palette.Count - 1)];
+
+                metaballs[i] = m;
             }
+
         }
 
-        private Vector3 RandomPosition()
-        {
-            return new Vector3(
-                Random.Range(-size * 0.5f, size * 0.5f),
-                Random.Range(-size * 0.5f, size * 0.5f),
-                Random.Range(-size * 0.5f, size * 0.5f)
-                );
-        }
-
-        public void UpdateMetaballs()
-        {
-            foreach (Metaball m in metaballs)
-            {
-                UpdateMetaballPos(m);
-            }
-        }
-
-        public void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-
-            foreach (Metaball metaball in metaballs)
-            {
-                Gizmos.DrawSphere(metaball.position, metaball.radius);
-            }
-        }
-
-        private void UpdateMetaballPos(Metaball m)
-        {
-            m.position += m.velocity * Time.deltaTime;
-
-            if (m.position.x + m.radius > size * 0.5f)
-            {
-                m.position.x = size * 0.5f - m.radius;
-                m.velocity.x = -m.velocity.x;
-            }
-            else if (m.position.x < -size * 0.5f)
-            {
-                m.position.x = -size * 0.5f + m.radius;
-                m.velocity.x = -m.velocity.x;
-            }
-            
-            if (m.position.y + m.radius > size * 0.5f)
-            {
-                m.position.y = size * 0.5f - m.radius;
-                m.velocity.y = -m.velocity.y;
-            }
-            else if (m.position.y < -size * 0.5f)
-            {
-                m.position.y = -size * 0.5f + m.radius;
-                m.velocity.y = -m.velocity.y;
-            }
-            
-            if (m.position.z + m.radius > size * 0.5f)
-            {
-                m.position.z = size * 0.5f - m.radius;
-                m.velocity.z = -m.velocity.z;
-            }
-            else if (m.position.z < -size * 0.5f)
-            {
-                m.position.z = -size * 0.5f + m.radius;
-                m.velocity.z = -m.velocity.z;
-            }
-        }
-        
         public float Evaluate(Vector3 point)
         {
             float sum = 0;
-
-            foreach (Metaball m in metaballs)
+            
+            for (int i = 0; i < metaballs.Length; i++)
             {
-                float dist = (point - m.position).sqrMagnitude;
-                if (dist <= 0) dist++;
-                sum += (m.radius * m.radius) / dist;    
+                Metaball3D m = metaballs[i];
+                
+                float d = (point - m.center).magnitude;
+                float r = m.radius;
+                float value = r / d;
+                
+                sum += value;
             }
 
             return sum;
-            //return (center - point).magnitude;
         }
 
         public Vector3 Normal(Vector3 point)
         {
-            Vector3 normal = Vector3.zero;
-
-            foreach (Metaball m in metaballs)
+            Vector3 netNormal = Vector3.zero;
+            
+            for (int i = 0; i < metaballs.Length; i++)
             {
-                normal += (point - m.position).normalized;
+                Metaball3D m = metaballs[i];
+
+                float r = m.radius;
+                float d = (point - m.center).magnitude;
+                
+                Vector3 normal = new Vector3();
+
+                float value = r / d;
+                normal = r * (point - m.center) / d;
+
+                netNormal += normal * value;
             }
 
-            return normal.normalized;
-            //return (point - center).normalized;
+            netNormal = netNormal / Evaluate(point);
+            
+            return netNormal.normalized;
         }
-    }
 
-    public class Metaball
-    {
-        public Vector3 position;
-        public float radius;
-        public Vector3 velocity;
-
-        public Metaball(Vector3 pos, float r, Vector3 vel)
+        public void MoveMetaballs()
         {
-            position = pos;
-            radius = r;
-            velocity = vel;
+            for (int i = 0; i < metaballs.Length; i++)
+            {
+                Vector3 p = metaballs[i].center;
+                Vector3 v = metaballs[i].velocity;
+                float r = metaballs[i].radius;
+                
+                float xMax = bounds.x * 0.5f;
+                float xMin = -xMax;
+                float yMax = bounds.y * 0.5f;
+                float yMin = -yMax;
+                float zMax = bounds.z * 0.5f;
+                float zMin = -zMax;
+
+                p = p + v * Time.deltaTime;
+
+                /*if (Vector3.Distance(p, center) > bounds.x * 0.5f + r)
+                {
+                    v = -v;
+                }*/
+                
+                if (p.x + r >= xMax)
+                {
+                    v.x = -v.x;
+                    p.x = xMax - r;
+                }
+                else if (p.x - r <= xMin)
+                {
+                    v.x = -v.x;
+                    p.x = xMin + r;
+                }
+                
+                if (p.y + r >= yMax)
+                {
+                    v.y = -v.y;
+                    p.y = yMax - r;
+                }
+                else if (p.y - r <= yMin)
+                {
+                    v.y = -v.y;
+                    p.y = yMin + r;
+                }
+                
+                if (p.z + r >= zMax)
+                {
+                    v.z = -v.z;
+                    p.z = zMax - r;
+                }
+                else if (p.z - r <= zMin)
+                {
+                    v.z = -v.z;
+                    p.z = zMin + r;
+                }
+
+                metaballs[i].center = p;
+                metaballs[i].velocity = v;
+            }
         }
     }
 }

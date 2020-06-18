@@ -9,7 +9,7 @@ namespace Terrain3D
     public class TerrainMesh : MonoBehaviour
     {
         [Header("Debug Settings")]
-        public bool showDebug = true;
+        public bool showDebug = false;
         [Space]
         public bool showVertices = true;
         [Range(0.01f, 0.1f)] public float vertexRadius = 0.05f;
